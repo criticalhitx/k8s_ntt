@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-tls
+spec:
+  tls:
+  - hosts:
+    - 34.96.118.202.xip.io
+    secretName: tls-secret
+  rules:
+  - host: 34.96.118.202.xip.io
+    http:
+      paths:
+        - path: /red
+          backend:
+            serviceName: hello-world-service-red
+            servicePort: 4242
+        - path: /blue
+          backend:
+            serviceName: hello-world-service-blue
+            servicePort: 4343
+        - backend:
+            serviceName: hello-world-service-single
+            servicePort: 80
+  backend:
+    serviceName: hello-world-service-single
+    servicePort: 80

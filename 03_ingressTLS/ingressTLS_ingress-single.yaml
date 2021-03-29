@@ -1,0 +1,8 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-single
+spec:
+  backend:
+    serviceName: hello-world-service-single
+    servicePort: 80
